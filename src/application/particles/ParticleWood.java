@@ -49,21 +49,28 @@ public class ParticleWood extends Particle {
 			if (leaves) {
 				if (rng.nextInt(10) > 7) {
 					if (grid[x][y-1] == Particles.LEAVES) {
-						grid[x][y-2] = Particles.LEAVES;
-						grid[x-1][y-1] = Particles.LEAVES;
-						grid[x+1][y-1] = Particles.LEAVES;
-						grid[x-2][y] = Particles.LEAVES;
-						grid[x+2][y] = Particles.LEAVES;
-						grid[x-1][y+1] = Particles.LEAVES;
-						grid[x+1][y+1] = Particles.LEAVES;
+						setLeaves(x, y-2, grid);
+						setLeaves(x-1, y-1, grid);
+						setLeaves(x+1, y-1, grid);
+						setLeaves(x-2, y, grid);
+						setLeaves(x+2, y, grid);
+						setLeaves(x-1, y+1, grid);
+						setLeaves(x+1, y+1, grid);
 					} else {
-						grid[x][y-1] = Particles.LEAVES;
-						grid[x-1][y] = Particles.LEAVES;
-						grid[x+1][y] = Particles.LEAVES;	
+						setLeaves(x, y-1, grid);
+						setLeaves(x-1, y, grid);
+						setLeaves(x+1, y, grid);	
 					}
 				}
 			}
 		}
+	}
+	
+	private void setLeaves(int x, int y, Particles[][] grid) {
+		if (grid[x][y] == Particles.FIRE || grid[x][y] == Particles.WOOD)
+			return;
+		
+		grid[x][y] = Particles.LEAVES;
 	}
 
 }

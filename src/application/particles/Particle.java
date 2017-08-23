@@ -12,7 +12,8 @@ public class Particle {
 		WATER,
 		WOOD,
 		DIRT,
-		LEAVES
+		LEAVES,
+		FIRE
 	}
 	
 	public Particles type;
@@ -36,6 +37,7 @@ public class Particle {
 		particles.put(Particles.WOOD, new ParticleWood());
 		particles.put(Particles.DIRT, new ParticleDirt());
 		particles.put(Particles.LEAVES, new ParticleLeaves());
+		particles.put(Particles.FIRE, new ParticleFire());
 	}
 	public static Particle getParticle(Particles type) {
 		return particles.get(type);
