@@ -43,27 +43,31 @@ public class ParticleWood extends Particle {
 			
 			if (ok && !leaves) {
 				if (rng.nextInt(10) == 9) {
-					if (grid[x][y-1] == Particles.NONE || grid[x][y-1] == Particles.LEAVES) {
-						grid[x][y-1] = Particles.WOOD;
+					if (y-1 >= 0) {
+						if (grid[x][y-1] == Particles.NONE || grid[x][y-1] == Particles.LEAVES) {
+							grid[x][y-1] = Particles.WOOD;
+						}
 					}
 				}
 			}
 			
 			if (leaves && ok) {
 				if (rng.nextInt(10) > 7) {
-					if (grid[x][y-1] == Particles.LEAVES) {
-						setLeaves(x, y-2, grid);
-						setLeaves(x-1, y-1, grid);
-						setLeaves(x+1, y-1, grid);
-						setLeaves(x-2, y, grid);
-						setLeaves(x+2, y, grid);
-						setLeaves(x-1, y+1, grid);
-						setLeaves(x+1, y+1, grid);
-					} else {
-						if (grid[x][y-1] != Particles.WOOD) {
-							setLeaves(x, y-1, grid);
-							setLeaves(x-1, y, grid);
-							setLeaves(x+1, y, grid);	
+					if (y-1 >= 0) {
+						if (grid[x][y-1] == Particles.LEAVES) {
+							setLeaves(x, y-2, grid);
+							setLeaves(x-1, y-1, grid);
+							setLeaves(x+1, y-1, grid);
+							setLeaves(x-2, y, grid);
+							setLeaves(x+2, y, grid);
+							setLeaves(x-1, y+1, grid);
+							setLeaves(x+1, y+1, grid);
+						} else {
+							if (grid[x][y-1] != Particles.WOOD) {
+								setLeaves(x, y-1, grid);
+								setLeaves(x-1, y, grid);
+								setLeaves(x+1, y, grid);	
+							}
 						}
 					}
 				}
@@ -72,6 +76,9 @@ public class ParticleWood extends Particle {
 	}
 	
 	private void setLeaves(int x, int y, Particles[][] grid) {
+		if (x < 0 || x >= grid.length || y < 0 || y >= grid[x].length)
+			return;
+		
 		if (grid[x][y] == Particles.FIRE || grid[x][y] == Particles.WOOD)
 			return;
 		

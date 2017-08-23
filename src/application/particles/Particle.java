@@ -13,7 +13,9 @@ public class Particle {
 		WOOD,
 		DIRT,
 		LEAVES,
-		FIRE
+		FIRE,
+		GLASS
+		//LAVA
 	}
 	
 	public Particles type;
@@ -38,6 +40,8 @@ public class Particle {
 		particles.put(Particles.DIRT, new ParticleDirt());
 		particles.put(Particles.LEAVES, new ParticleLeaves());
 		particles.put(Particles.FIRE, new ParticleFire());
+		particles.put(Particles.GLASS, new ParticleGlass());
+		//particles.put(Particles.LAVA, new ParticleLava());
 	}
 	public static Particle getParticle(Particles type) {
 		return particles.get(type);
