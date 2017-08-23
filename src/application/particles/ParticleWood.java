@@ -22,8 +22,9 @@ public class ParticleWood extends Particle {
 			boolean ok = false;
 			boolean leaves = false;
 			for (int yOffset = 1; yOffset < grid[0].length-y; yOffset++) {
-				if (yOffset == 5) {
-					leaves = true;
+				if (yOffset > 5) {
+					ok = false;
+					leaves = false;
 					break;
 				}
 				
@@ -32,13 +33,15 @@ public class ParticleWood extends Particle {
 				
 				if (grid[x][y+yOffset] == Particles.DIRT) {
 					ok = true;
-					break;
+					
+					if (yOffset == 5)
+						leaves = true;
 				}
 				
 				break;
 			}
 			
-			if (ok) {
+			if (ok && !leaves) {
 				if (rng.nextInt(10) == 9) {
 					if (grid[x][y-1] == Particles.NONE || grid[x][y-1] == Particles.LEAVES) {
 						grid[x][y-1] = Particles.WOOD;
@@ -46,7 +49,7 @@ public class ParticleWood extends Particle {
 				}
 			}
 			
-			if (leaves) {
+			if (leaves && ok) {
 				if (rng.nextInt(10) > 7) {
 					if (grid[x][y-1] == Particles.LEAVES) {
 						setLeaves(x, y-2, grid);
@@ -57,9 +60,11 @@ public class ParticleWood extends Particle {
 						setLeaves(x-1, y+1, grid);
 						setLeaves(x+1, y+1, grid);
 					} else {
-						setLeaves(x, y-1, grid);
-						setLeaves(x-1, y, grid);
-						setLeaves(x+1, y, grid);	
+						if (grid[x][y-1] != Particles.WOOD) {
+							setLeaves(x, y-1, grid);
+							setLeaves(x-1, y, grid);
+							setLeaves(x+1, y, grid);	
+						}
 					}
 				}
 			}

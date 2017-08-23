@@ -17,7 +17,7 @@ public class ParticleFire extends Particle {
 	
 	@Override
 	public void update(int x, int y, Particles[][] grid) {
-		if (rng.nextInt(15) > 5) {
+		if (rng.nextInt(101) > 25) {
 			if (grid[x-1][y] == Particles.LEAVES || grid[x-1][y] == Particles.WOOD)
 				grid[x-1][y] = Particles.FIRE;
 			if (grid[x+1][y] == Particles.LEAVES || grid[x+1][y] == Particles.WOOD)
@@ -29,7 +29,7 @@ public class ParticleFire extends Particle {
 				
 		}
 		
-		if (rng.nextInt(100) > 80);
+		if (rng.nextInt(101) > 90);
 			grid[x][y] = Particles.NONE;
 	}
 }
