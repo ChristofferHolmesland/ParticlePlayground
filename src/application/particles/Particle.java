@@ -9,7 +9,10 @@ public class Particle {
 		NONE,
 		METAL,
 		SAND,
-		WATER
+		WATER,
+		WOOD,
+		DIRT,
+		LEAVES
 	}
 	
 	public Particles type;
@@ -30,6 +33,9 @@ public class Particle {
 		particles.put(Particles.METAL, new ParticleMetal());
 		particles.put(Particles.SAND, new ParticleSand());
 		particles.put(Particles.WATER, new ParticleWater());
+		particles.put(Particles.WOOD, new ParticleWood());
+		particles.put(Particles.DIRT, new ParticleDirt());
+		particles.put(Particles.LEAVES, new ParticleLeaves());
 	}
 	public static Particle getParticle(Particles type) {
 		return particles.get(type);

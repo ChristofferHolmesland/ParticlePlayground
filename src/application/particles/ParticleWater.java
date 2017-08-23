@@ -29,7 +29,7 @@ public class ParticleWater extends Particle {
 		int newY = -1;
 		
 		// Try going down
-		if (grid[x][y+1] == Particles.NONE) {
+		if (grid[x][y+1] == Particles.NONE || grid[x][y+1] == Particles.LEAVES) {
 			newX = x;
 			newY = y+1;
 		} else {
